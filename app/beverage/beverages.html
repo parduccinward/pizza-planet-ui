@@ -58,11 +58,11 @@
           <table id="beverages" class="table bg-white table-bordered table-hover">
             <thead class="thead-dark">
               <tr class="d-flex">
-                <th class="col-2 text-center">ID</th>
-                <th class="col-4 text-center">Name</th>
-                <th class="col-3 text-center">Price</th>
-                <th class="col-3 text-center">Size</th>
-                <th class="col-3 text-center">Actions</th>
+                <th class="col-sm text-center">ID</th>
+                <th class="col-sm text-center">Name</th>
+                <th class="col-sm text-center">Price</th>
+                <th class="col-sm text-center">Size</th>
+                <th class="col-sm text-center">Actions</th>
               </tr>
             </thead>
             <tbody></tbody>
@@ -79,11 +79,11 @@
 
     <template id="beverage-item-template">
       <tr class="d-flex">
-        <td class="col-2 text-center">{{_id}}</td>
-        <td class="col-4">{{name}}</td>
-        <td class="col-3">${{price}}</td>
-        <td class="col-3">${{size}}</td>
-        <td class="col-3 text-center">
+        <td class="col-sm text-center">{{_id}}</td>
+        <td class="col-sm">{{name}}</td>
+        <td class="col-sm">${{price}}</td>
+        <td class="col-sm">${{size}}</td>
+        <td class="col-sm text-center">
           <div class="text-center">
             <a
               class="btn btn-success btn-sm update-beverage"

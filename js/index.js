@@ -82,6 +82,38 @@ function fetchOrderSizes() {
         });
 }
 
+function fetchOrderBeverages() {
+    let beveragesData = [];
+
+    fetch('http://127.0.0.1:5000/beverage/')
+        .then(response => response.json())
+        .then(beverages => {
+            beveragesData = beverages;
+            const selectElement = selectTemplate.content.querySelector('select');
+            addBeverageOptionsToSelect(beveragesData, selectElement);
+        });
+
+    function addBeverageOptionsToSelect(beverageData, selectElement) {
+        beverageData.forEach((beverage) => {
+            const optionElement = document.createElement("option");
+            optionElement.value = beverage._id;
+            optionElement.textContent = `${beverage.name} - $${beverage.price}`;
+            selectElement.appendChild(optionElement);
+        });
+    }
+
+    const table = document.querySelector('#beverages tbody');
+    const rowTemplate = document.querySelector('#row-template');
+    const addRowBtn = document.querySelector('#add-row-btn');
+
+    addRowBtn.addEventListener('click', () => {
+        const newRow = rowTemplate.content.cloneNode(true);
+        const selectElement = newRow.querySelector('select');
+        addBeverageOptionsToSelect(beveragesData, selectElement);;
+        table.appendChild(newRow);
+    });
+}
+
 function createIngredientTemplate(ingredient) {
     let template = $("#ingredients-template")[0].innerHTML;
     return Mustache.render(template, ingredient);
@@ -92,9 +124,15 @@ function createSizeTemplate(size) {
     return Mustache.render(template, size);
 }
 
+function createBeverageTemplate(beverage) {
+    let template = $("#beverages-template")[0].innerHTML;
+    return Mustache.render(template, beverage);
+}
+
 function loadInformation() {
     fetchIngredients();
     fetchOrderSizes();
+    fetchOrderBeverages();
 }
 
 

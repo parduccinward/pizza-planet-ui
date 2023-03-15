@@ -100,8 +100,9 @@
           <table class="table bg-white table-bordered">
             <thead class="thead-dark">
               <tr>
-                <th class="w-50">Choose a size</th>
-                <th class="w-50">Choose your ingredients</th>
+                <th class="w-20">Choose a size</th>
+                <th class="w-40">Choose your ingredients</th>
+                <th class="w-40">Choose your Beverages</th>
               </tr>
             </thead>
             <tbody>
@@ -127,6 +128,32 @@
                     </template>
                     <tbody></tbody>
                   </table>
+                </td>
+                <td>
+                  <table id="beverages">
+                    <thead>
+                      <tr>
+                        <th>Beverage</th>
+                        <th>Quantity</th>
+                      </tr>
+                    </thead>
+                    <tbody></tbody>
+                  </table>
+                  
+                  <button type="button" id="add-row-btn">Add Beverage</button>
+                  
+                  <template id="row-template">
+                    <tr>
+                      <td>
+                        <select id="beverage-select" class="form-control">
+                          <option value="">Select a beverage</option>
+                        </select>
+                      </td>
+                      <td>
+                        <input type="number" class="form-control" value="1" min="1">
+                      </td>
+                    </tr>
+                  </template>
                 </td>
               </tr>
             </tbody>
