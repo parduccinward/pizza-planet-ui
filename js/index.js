@@ -110,7 +110,7 @@ function fetchOrderBeverages() {
         beverageData.forEach((beverage) => {
             const optionElement = document.createElement("option");
             optionElement.value = beverage._id;
-            optionElement.textContent = `${beverage.name} - $${beverage.price}`;
+            optionElement.textContent = `${beverage.name} ${beverage.size} - $${beverage.price}`;
             selectElement.appendChild(optionElement);
         });
     }
