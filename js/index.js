@@ -40,13 +40,26 @@ function getOrderData() {
         ingredients.push($(this).val());
     });
 
+    let beverages = [];
+
+    $(".beverage-selector").each(function() {
+        const selectedValue = $(this).find("option:selected").val();
+        const numberOfBeverages = parseInt($(this).closest("tr").find(".beverage-number-input").val());
+        if (selectedValue) {
+            for(indexBeverages=0; indexBeverages<numberOfBeverages; indexBeverages++){
+                beverages.push(selectedValue);
+            }
+        }
+    });
+
     return {
         client_name: $("input[name='name']").val(),
         client_dni: $("input[name='dni']").val(),
         client_address: $("input[name='address']").val(),
         client_phone: $("input[name='phone']").val(),
         size_id: $("input[name='size']:checked").val(),
-        ingredients
+        ingredients,
+        beverages
     };
 }
 
