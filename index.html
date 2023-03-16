@@ -40,6 +40,9 @@
             <a class="nav-link" href="/app/ingredient/ingredients.html">Ingredients</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/app/beverage/beverages.html">Beverages</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/app/size/sizes.html">Sizes</a>
           </li>
         </ul>
@@ -97,8 +100,9 @@
           <table class="table bg-white table-bordered">
             <thead class="thead-dark">
               <tr>
-                <th class="w-50">Choose a size</th>
+                <th class="w-20">Choose a size</th>
                 <th class="w-50">Choose your ingredients</th>
+                <th class="w-30">Choose your Beverages</th>
               </tr>
             </thead>
             <tbody>
@@ -124,6 +128,24 @@
                     </template>
                     <tbody></tbody>
                   </table>
+                </td>
+                <td class="beverage-section">
+                  <button type="button" id="add-row-btn" class="btn btn-success">Add Beverage</button>
+                  <table id="beverages">
+                    <tbody></tbody>
+                  </table>
+                  <template id="row-template">
+                    <tr>
+                      <td>
+                        <select id="beverage-select" class="form-control beverage-selector">
+                          <option value="">Select a beverage</option>
+                        </select>
+                      </td>
+                      <td class="beverage-number">
+                        <input type="number" class="form-control beverage-number-input" value="1" min="1">
+                      </td>
+                    </tr>
+                  </template>
                 </td>
               </tr>
             </tbody>

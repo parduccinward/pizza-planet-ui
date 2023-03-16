@@ -40,13 +40,26 @@ function getOrderData() {
         ingredients.push($(this).val());
     });
 
+    let beverages = [];
+
+    $(".beverage-selector").each(function() {
+        const selectedValue = $(this).find("option:selected").val();
+        const numberOfBeverages = parseInt($(this).closest("tr").find(".beverage-number-input").val());
+        if (selectedValue) {
+            for(indexBeverages=0; indexBeverages<numberOfBeverages; indexBeverages++){
+                beverages.push(selectedValue);
+            }
+        }
+    });
+
     return {
         client_name: $("input[name='name']").val(),
         client_dni: $("input[name='dni']").val(),
         client_address: $("input[name='address']").val(),
         client_phone: $("input[name='phone']").val(),
         size_id: $("input[name='size']:checked").val(),
-        ingredients
+        ingredients,
+        beverages
     };
 }
 
@@ -82,6 +95,38 @@ function fetchOrderSizes() {
         });
 }
 
+function fetchOrderBeverages() {
+    let beveragesData = [];
+
+    fetch('http://127.0.0.1:5000/beverage/')
+        .then(response => response.json())
+        .then(beverages => {
+            beveragesData = beverages;
+            const selectElement = selectTemplate.content.querySelector('select');
+            addBeverageOptionsToSelect(beveragesData, selectElement);
+        });
+
+    function addBeverageOptionsToSelect(beverageData, selectElement) {
+        beverageData.forEach((beverage) => {
+            const optionElement = document.createElement("option");
+            optionElement.value = beverage._id;
+            optionElement.textContent = `${beverage.name} ${beverage.size} - $${beverage.price}`;
+            selectElement.appendChild(optionElement);
+        });
+    }
+
+    const table = document.querySelector('#beverages tbody');
+    const rowTemplate = document.querySelector('#row-template');
+    const addRowBtn = document.querySelector('#add-row-btn');
+
+    addRowBtn.addEventListener('click', () => {
+        const newRow = rowTemplate.content.cloneNode(true);
+        const selectElement = newRow.querySelector('select');
+        addBeverageOptionsToSelect(beveragesData, selectElement);;
+        table.appendChild(newRow);
+    });
+}
+
 function createIngredientTemplate(ingredient) {
     let template = $("#ingredients-template")[0].innerHTML;
     return Mustache.render(template, ingredient);
@@ -92,9 +137,15 @@ function createSizeTemplate(size) {
     return Mustache.render(template, size);
 }
 
+function createBeverageTemplate(beverage) {
+    let template = $("#beverages-template")[0].innerHTML;
+    return Mustache.render(template, beverage);
+}
+
 function loadInformation() {
     fetchIngredients();
     fetchOrderSizes();
+    fetchOrderBeverages();
 }
 
 
