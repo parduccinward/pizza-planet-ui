@@ -72,3 +72,19 @@ input.form-control.beverage-number-input {
   -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
+th.col-1.text-center{
+  font-size: 0.8rem;
+}
+
+.col-12.text-center {
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #212529;
+  border-color: #32383e;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.col-12.text-center {
+  padding: 5px
+}
